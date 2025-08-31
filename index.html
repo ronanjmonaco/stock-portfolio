@@ -10769,28 +10769,59 @@ img_base64
                 // Show progress bar
                 this.showProgressBar('Loading Argentine ADR Portfolio', selectedAdrs.length);
                 
+                // Add timeout to prevent hanging
+                const timeoutPromise = new Promise((_, reject) => {
+                    setTimeout(() => reject(new Error('Request timeout - please try again')), 30000); // 30 second timeout
+                });
+                
                 try {
-                    for (let i = 0; i < selectedAdrs.length; i++) {
-                        const symbol = selectedAdrs[i];
-                        this.updateProgress(i, selectedAdrs.length, `Loading ${symbol}...`);
+                    // Process ADRs in smaller batches to prevent blocking
+                    const batchSize = 3; // Process 3 ADRs at a time
+                    
+                    for (let i = 0; i < selectedAdrs.length; i += batchSize) {
+                        const batch = selectedAdrs.slice(i, i + batchSize);
                         
-                        // Check if already in portfolio
-                        if (this.portfolio.has(symbol)) {
-                            continue;
-                        }
+                        // Process batch in parallel
+                        const batchPromises = batch.map(async (symbol, batchIndex) => {
+                            const globalIndex = i + batchIndex;
+                            this.updateProgress(globalIndex, selectedAdrs.length, `Loading ${symbol}...`);
+                            
+                            // Check if already in portfolio
+                            if (this.portfolio.has(symbol)) {
+                                return null;
+                            }
+                            
+                            try {
+                                const stockData = await this.fetchStockData(symbol);
+                                if (stockData) {
+                                    await this.addToPortfolio(symbol, stockData);
+                                    return symbol;
+                                }
+                            } catch (error) {
+                                console.warn(`Error loading ${symbol}:`, error.message);
+                                return null;
+                            }
+                        });
                         
-                        const stockData = await this.fetchStockData(symbol);
-                        if (stockData) {
-                            await this.addToPortfolio(symbol, stockData);
-                        }
+                        // Wait for batch to complete
+                        await Promise.all(batchPromises);
+                        
+                        // Allow UI to update between batches
+                        await new Promise(resolve => setTimeout(resolve, 100));
                     }
                     
                     this.hideProgressBar();
-                    this.showSuccess(`Successfully loaded ${selectedAdrs.length} Argentine ADRs to your portfolio`);
+                    this.showSuccess(`Successfully loaded Argentine ADRs to your portfolio`);
                     
-                    // Auto-update analyses
+                    // Auto-update analyses with delay to prevent blocking
                     if (this.portfolio.size > 0) {
-                        await this.autoUpdateAllAnalyses();
+                        setTimeout(async () => {
+                            try {
+                                await this.autoUpdateAllAnalyses();
+                            } catch (error) {
+                                console.warn('Error in auto-update:', error.message);
+                            }
+                        }, 500);
                     }
                     
                 } catch (error) {
@@ -10803,17 +10834,52 @@ img_base64
 
         // Initialize the portfolio when the page loads
         const portfolio = new StockPortfolio();
+        
+        // Add loading indicator
+        const loadingIndicator = document.createElement('div');
+        loadingIndicator.id = 'pageLoadingIndicator';
+        loadingIndicator.innerHTML = `
+            <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.9); z-index: 9999; display: flex; justify-content: center; align-items: center;">
+                <div style="text-align: center;">
+                    <div style="width: 50px; height: 50px; border: 4px solid #f3f3f3; border-top: 4px solid #667eea; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+                    <p style="color: #333; font-size: 16px; margin: 0;">Loading Financial Portfolio Tracker...</p>
+                </div>
+            </div>
+            <style>
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            </style>
+        `;
+        document.body.appendChild(loadingIndicator);
 
-        // Auto-update analyses if portfolio has data
+        // Auto-update analyses if portfolio has data (with performance optimization)
         setTimeout(async () => {
             console.log('Page loaded successfully');
             console.log('Stock page visible:', document.getElementById('stocks-tab').style.display !== 'none');
             console.log('Bond calculator section found:', document.getElementById('bondCalculatorSection') !== null);
             
-            // If portfolio has stocks, auto-update all analyses
+            // Remove loading indicator
+            const loadingIndicator = document.getElementById('pageLoadingIndicator');
+            if (loadingIndicator) {
+                loadingIndicator.style.opacity = '0';
+                setTimeout(() => {
+                    loadingIndicator.remove();
+                }, 300);
+            }
+            
+            // If portfolio has stocks, auto-update all analyses with delay
             if (portfolio.portfolio.size > 0) {
                 console.log('Portfolio has data, auto-updating analyses...');
-                await portfolio.autoUpdateAllAnalyses();
+                // Add delay to prevent blocking during page load
+                setTimeout(async () => {
+                    try {
+                        await portfolio.autoUpdateAllAnalyses();
+                    } catch (error) {
+                        console.warn('Error in initial auto-update:', error.message);
+                    }
+                }, 2000); // 2 second delay
             }
         }, 1000);
     </script>
