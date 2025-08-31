@@ -2099,6 +2099,202 @@
             margin-bottom: 5px;
         }
 
+        /* ADR Selection Section Styles - Vibrant Design */
+        .adr-selection-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 248, 255, 0.8));
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            backdrop-filter: blur(15px);
+        }
+
+        .adr-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .adr-header h3 {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .adr-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .adr-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .adr-btn:hover {
+            background: linear-gradient(135deg, #5a6fd8, #6a4190);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .adr-btn.primary {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            font-weight: 600;
+            box-shadow: 0 3px 12px rgba(255, 107, 107, 0.4);
+        }
+
+        .adr-btn.primary:hover {
+            background: linear-gradient(135deg, #ff5252, #e74c3c);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.5);
+        }
+
+        .adr-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .adr-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
+            border-radius: 10px;
+            border: 2px solid rgba(102, 126, 234, 0.15);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .adr-item:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-color: rgba(102, 126, 234, 0.4);
+            transform: translateX(3px) translateY(-1px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .adr-checkbox {
+            width: 18px;
+            height: 18px;
+            accent-color: #667eea;
+            cursor: pointer;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+        }
+
+        .adr-item label {
+            cursor: pointer;
+            font-weight: 500;
+            flex: 1;
+            margin: 0;
+            font-size: 0.95rem;
+            color: #2c3e50;
+        }
+
+        .adr-summary {
+            text-align: center;
+            padding: 16px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 10px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.1);
+        }
+
+        .adr-summary span {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Dark mode adjustments for ADR section - Vibrant */
+        [data-theme="dark"] .adr-selection-section {
+            background: linear-gradient(135deg, rgba(30, 30, 46, 0.9), rgba(26, 26, 46, 0.8));
+            border: 2px solid rgba(78, 205, 196, 0.3);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 20px rgba(78, 205, 196, 0.2);
+        }
+
+        [data-theme="dark"] .adr-header h3 {
+            color: #ffffff;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        [data-theme="dark"] .adr-item {
+            background: linear-gradient(135deg, rgba(42, 42, 58, 0.8), rgba(58, 58, 78, 0.6));
+            border: 2px solid rgba(78, 205, 196, 0.2);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        [data-theme="dark"] .adr-item:hover {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.15), rgba(68, 160, 141, 0.15));
+            border-color: rgba(78, 205, 196, 0.5);
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+        }
+
+        [data-theme="dark"] .adr-item label {
+            color: #ffffff;
+        }
+
+        [data-theme="dark"] .adr-summary {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.15), rgba(68, 160, 141, 0.15));
+            border: 2px solid rgba(78, 205, 196, 0.3);
+            box-shadow: 0 2px 10px rgba(78, 205, 196, 0.2);
+        }
+
+        [data-theme="dark"] .adr-summary span {
+            color: #4ecdc4;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        [data-theme="dark"] .adr-btn {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            border: none;
+            color: white;
+            box-shadow: 0 2px 8px rgba(78, 205, 196, 0.3);
+        }
+
+        [data-theme="dark"] .adr-btn:hover {
+            background: linear-gradient(135deg, #45b7aa, #3d8f7d);
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        [data-theme="dark"] .adr-btn.primary {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            box-shadow: 0 3px 12px rgba(255, 107, 107, 0.4);
+        }
+
+        [data-theme="dark"] .adr-btn.primary:hover {
+            background: linear-gradient(135deg, #ff5252, #e74c3c);
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.5);
+        }
+
+        [data-theme="dark"] .adr-checkbox {
+            accent-color: #4ecdc4;
+            filter: drop-shadow(0 1px 3px rgba(0,0,0,0.3));
+        }
+
         .bond-metric-label {
             font-size: 0.8rem;
             color: var(--text-secondary);
@@ -2379,6 +2575,89 @@
                 <div id="marketStatus" class="market-status" style="margin-left: 15px; color: #333; font-size: 14px; font-weight: 500; display: inline-block;">
                     <i class="fas fa-clock"></i> Loading market status...
                 </div>
+            </div>
+        </div>
+
+        <!-- ADR Selection Section -->
+        <div class="adr-selection-section">
+            <div class="adr-header">
+                <h3><i class="fas fa-flag"></i> Argentine ADR Selection</h3>
+                <div class="adr-controls">
+                    <button id="selectAllAdrs" class="adr-btn">
+                        <i class="fas fa-check-double"></i> Select All
+                    </button>
+                    <button id="clearAllAdrs" class="adr-btn">
+                        <i class="fas fa-times"></i> Clear All
+                    </button>
+                    <button id="loadArgiePortfolio" class="adr-btn primary">
+                        <i class="fas fa-rocket"></i> Load Argie Portfolio
+                    </button>
+                </div>
+            </div>
+            <div class="adr-grid">
+                <div class="adr-item">
+                    <input type="checkbox" id="BBAR" class="adr-checkbox" checked>
+                    <label for="BBAR">BBAR - BBVA Banco Francés</label>
+                </div>
+                <div class="adr-item">
+                    <input type="checkbox" id="BMA" class="adr-checkbox" checked>
+                    <label for="BMA">BMA - Banco Macro</label>
+                </div>
+                <div class="adr-item">
+                    <input type="checkbox" id="CEPU" class="adr-checkbox" checked>
+                    <label for="CEPU">CEPU - Central Puerto</label>
+                </div>
+                <div class="adr-item">
+                    <input type="checkbox" id="CRESY" class="adr-checkbox" checked>
+                    <label for="CRESY">CRESY - Cresud</label>
+                </div>
+                <div class="adr-item">
+                    <input type="checkbox" id="EDN" class="adr-checkbox" checked>
+                    <label for="EDN">EDN - Edenor</label>
+                </div>
+                <div class="adr-item">
+                    <input type="checkbox" id="GGAL" class="adr-checkbox" checked>
+                    <label for="GGAL">GGAL - Grupo Financiero Galicia</label>
+                </div>
+                <div class="adr-item">
+                    <input type="checkbox" id="IRS" class="adr-checkbox" checked>
+                    <label for="IRS">IRS - IRSA</label>
+                </div>
+                <div class="adr-item">
+                    <input type="checkbox" id="LOMA" class="adr-checkbox" checked>
+                    <label for="LOMA">LOMA - Loma Negra</label>
+                </div>
+                <div class="adr-item">
+                    <input type="checkbox" id="MELI" class="adr-checkbox" checked>
+                    <label for="MELI">MELI - Mercado Libre Inc.</label>
+                </div>
+                <div class="adr-item">
+                    <input type="checkbox" id="PAM" class="adr-checkbox" checked>
+                    <label for="PAM">PAM - Pampa Energía</label>
+                </div>
+                <div class="adr-item">
+                    <input type="checkbox" id="SUPV" class="adr-checkbox" checked>
+                    <label for="SUPV">SUPV - Grupo Supervielle</label>
+                </div>
+                <div class="adr-item">
+                    <input type="checkbox" id="TEO" class="adr-checkbox" checked>
+                    <label for="TEO">TEO - Telecom Argentina</label>
+                </div>
+                <div class="adr-item">
+                    <input type="checkbox" id="TGS" class="adr-checkbox" checked>
+                    <label for="TGS">TGS - Transportadora de Gas del Sur</label>
+                </div>
+                <div class="adr-item">
+                    <input type="checkbox" id="TS" class="adr-checkbox" checked>
+                    <label for="TS">TS - Tenaris</label>
+                </div>
+                <div class="adr-item">
+                    <input type="checkbox" id="YPF" class="adr-checkbox" checked>
+                    <label for="YPF">YPF - YPF</label>
+                </div>
+            </div>
+            <div class="adr-summary">
+                <span id="adrCount">Selected: 15/15 ADRs</span>
             </div>
         </div>
 
@@ -2701,6 +2980,9 @@
                 
                 // Dark mode toggle
                 document.getElementById('themeToggle').addEventListener('click', () => this.toggleDarkMode());
+                
+                // Initialize ADR selection
+                this.initializeAdrSelection();
             }
 
             async preparePythonPackages() {
@@ -10431,6 +10713,90 @@ img_base64
                         });
                     }
                 });
+            }
+
+            // ADR Selection Methods
+            initializeAdrSelection() {
+                // Add event listeners for ADR controls
+                document.getElementById('selectAllAdrs').addEventListener('click', () => this.selectAllAdrs());
+                document.getElementById('clearAllAdrs').addEventListener('click', () => this.clearAllAdrs());
+                document.getElementById('loadArgiePortfolio').addEventListener('click', () => this.loadArgiePortfolio());
+                
+                // Add event listeners for individual checkboxes
+                const adrCheckboxes = document.querySelectorAll('.adr-checkbox');
+                adrCheckboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', () => this.updateAdrCount());
+                });
+                
+                // Initialize count
+                this.updateAdrCount();
+            }
+
+            selectAllAdrs() {
+                const adrCheckboxes = document.querySelectorAll('.adr-checkbox');
+                adrCheckboxes.forEach(checkbox => {
+                    checkbox.checked = true;
+                });
+                this.updateAdrCount();
+            }
+
+            clearAllAdrs() {
+                const adrCheckboxes = document.querySelectorAll('.adr-checkbox');
+                adrCheckboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                this.updateAdrCount();
+            }
+
+            updateAdrCount() {
+                const adrCheckboxes = document.querySelectorAll('.adr-checkbox');
+                const selectedCount = Array.from(adrCheckboxes).filter(checkbox => checkbox.checked).length;
+                const totalCount = adrCheckboxes.length;
+                document.getElementById('adrCount').textContent = `Selected: ${selectedCount}/${totalCount} ADRs`;
+            }
+
+            async loadArgiePortfolio() {
+                const adrCheckboxes = document.querySelectorAll('.adr-checkbox');
+                const selectedAdrs = Array.from(adrCheckboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.id);
+
+                if (selectedAdrs.length === 0) {
+                    this.showError('Please select at least one ADR');
+                    return;
+                }
+
+                // Show progress bar
+                this.showProgressBar('Loading Argentine ADR Portfolio', selectedAdrs.length);
+                
+                try {
+                    for (let i = 0; i < selectedAdrs.length; i++) {
+                        const symbol = selectedAdrs[i];
+                        this.updateProgress(i, selectedAdrs.length, `Loading ${symbol}...`);
+                        
+                        // Check if already in portfolio
+                        if (this.portfolio.has(symbol)) {
+                            continue;
+                        }
+                        
+                        const stockData = await this.fetchStockData(symbol);
+                        if (stockData) {
+                            await this.addToPortfolio(symbol, stockData);
+                        }
+                    }
+                    
+                    this.hideProgressBar();
+                    this.showSuccess(`Successfully loaded ${selectedAdrs.length} Argentine ADRs to your portfolio`);
+                    
+                    // Auto-update analyses
+                    if (this.portfolio.size > 0) {
+                        await this.autoUpdateAllAnalyses();
+                    }
+                    
+                } catch (error) {
+                    this.hideProgressBar();
+                    this.showError(`Error loading Argentine ADR portfolio: ${error.message}`);
+                }
             }
 
         }
